@@ -75,9 +75,9 @@ const openReadmeInEditor = () => fetch('/__open-in-editor?file=README.md')
     <a href="https://stackoverflow.com/questions/tagged/vue.js" target="_blank" rel="noopener"
       >StackOverflow</a
     >. You should also follow the official
-    <a href="https://bsky.app/profile/vuejs.org" target="_blank" rel="noopener">@vuejs.org</a>
+    <a href="https://bsky.app/profile/vuejs.org" target="_blank" rel="noopener">org</a>
     Bluesky account or the
-    <a href="https://x.com/vuejs" target="_blank" rel="noopener">@vuejs</a>
+    <a href="https://x.com/vuejs" target="_blank" rel="noopener">1</a>
     X account for latest news in the Vue world.
   </WelcomeItem>
 
