@@ -15,7 +15,7 @@ import AppNavigator from './components/AppNavigator.vue'
   <!-- <header>
     <RouterLink v-for="item in routesList" :key="item" :to="`/${item}`"
     :class="{active: activeTabs === item}">{{ item }}</RouterLink>
-  </header> -->1
+  </header> -->
   <AppNavigator msg="hello" />
   <RouterView />
 </template>
