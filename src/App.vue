@@ -1,56 +1,33 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterView } from 'vue-router'
+// import { computed } from 'vue'
+import AppNavigator from './components/AppNavigator.vue'
+
+// const routes = useRoute()
+// console.log(routes)
+// const activeTabs = computed(() => { return routes.name })
+// console.log(activeTabs)
+
+// const routesList = ['dataSource', 'layout', 'actions']
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
+  <!-- <header>
+    <RouterLink v-for="item in routesList" :key="item" :to="`/${item}`"
+    :class="{active: activeTabs === item}">{{ item }}</RouterLink>
+  </header> -->
+  <AppNavigator msg="hello" />
   <RouterView />
 </template>
 
 <style scoped>
 header {
-  line-height: 1.5;
-  max-height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
+/* .active {
+  background-color: red;
+} */
 </style>
