@@ -3,7 +3,8 @@ import { Bug, Data, LayoutThree, Lightning, Share } from '@icon-park/vue-next'
 import { computed, defineComponent, h } from 'vue'
 import { useRoute } from 'vue-router'
 
-import { useEnvStore } from '@/stores/debug'
+import { useDebugStore } from '@/stores/debug'
+// import { storeToRefs } from 'pinia'
 
 const linkItems = [
   {
@@ -34,8 +35,10 @@ defineProps<{
 }>()
 
 // 千万不要这样！
-// const { debug, toggle } = useEnvStore()
-const envStore = useEnvStore()
+// const { debug, toggle } = useDebugStore()
+const debugStore = useDebugStore()
+// 可以这样
+// const { debug, toggle } = storeToRefs(debugStore)
 
 const route = useRoute()
 
@@ -116,9 +119,13 @@ const Icon = defineComponent({
       </router-link>
     </div>
     <div class="app-setting-wrapper">
-      <div class="common-btn debug-btn" :class="{ debug: envStore.debug }" @click="envStore.toggle">
+      <div
+        class="common-btn debug-btn"
+        :class="{ debug: debugStore.debug }"
+        @click="debugStore.toggleDebug"
+      >
         <Bug />
-        开发模式:({{ envStore.debug ? '开' : '关' }})
+        开发模式:({{ debugStore.debug ? '开' : '关' }})
       </div>
       <div class="common-btn">
         <Share />

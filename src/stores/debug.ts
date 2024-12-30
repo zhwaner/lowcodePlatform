@@ -1,13 +1,13 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useEnvStore = defineStore('editor', () => {
+export const useDebugStore = defineStore('debug', () => {
   const debug = ref(false)
-  const toggle = () => {
+  const toggleDebug = () => {
     debug.value = !debug.value
   }
   return {
     debug,
-    toggle,
+    toggleDebug,
   }
 })
