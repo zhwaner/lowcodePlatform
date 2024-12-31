@@ -7,9 +7,16 @@ export const useEditorStore = defineStore('editor', () => {
   const addBlock = (block: any) => {
     blocks.value.push(block)
   }
+
+  const updateBlock = (block: any) => {
+    // 一般尽量不要直接覆盖，这样会影响性能
+    blocks.value = block
+  }
+
   console.log(blocks)
   return {
     blocks,
     addBlock,
+    updateBlock,
   }
 })

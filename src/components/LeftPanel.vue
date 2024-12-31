@@ -49,7 +49,7 @@ const toggleMode = (newMode: Mode) => {
               console.log('drop', e)
             }
           "
-          :get-child-payload="(index: number) => index"
+          :get-child-payload="(index: number) => index + 1"
         >
           <SmoothDndDraggable v-for="item in 10" :key="item">
             <div class="block-item">{{ item }}</div>
