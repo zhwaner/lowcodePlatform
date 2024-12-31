@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { Bug, Data, LayoutThree, Lightning, Share } from '@icon-park/vue-next'
-import { computed, defineComponent, h } from 'vue'
+import { computed, defineComponent, h, unref, toRaw } from 'vue'
 import { useRoute } from 'vue-router'
 
 import { useDebugStore } from '@/stores/debug'
-// import { storeToRefs } from 'pinia'
+import { useEditorStore } from '@/stores/editor'
+import { storeToRefs } from 'pinia'
 
 const linkItems = [
   {
@@ -40,6 +41,9 @@ const debugStore = useDebugStore()
 // 可以这样
 // const { debug, toggle } = storeToRefs(debugStore)
 
+const editorStore = useEditorStore()
+const { blocks } = storeToRefs(editorStore)
+
 const route = useRoute()
 
 const activeLink = computed(() => route.path)
@@ -53,6 +57,11 @@ const activeLink = computed(() => route.path)
 //     activeLink.value = path.slice(1)
 //   }
 // )
+
+const publishContent = () => {
+  console.log(JSON.stringify(unref(blocks)))
+  console.log(JSON.stringify(toRaw(blocks)))
+}
 
 const Icon = defineComponent({
   setup(props) {
@@ -127,7 +136,7 @@ const Icon = defineComponent({
         <Bug />
         开发模式:({{ debugStore.debug ? '开' : '关' }})
       </div>
-      <div class="common-btn">
+      <div class="common-btn" @click="publishContent">
         <Share />
         发布
       </div>

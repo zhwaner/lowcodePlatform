@@ -7,6 +7,7 @@ import { SmoothDndDraggable } from '@/components/SmoothDnd/SmoothDndDraggable'
 import { storeToRefs } from 'pinia'
 import type { DropResult } from 'smooth-dnd'
 import { arrayMove } from '@/utils/array'
+import BlockRenderer from '@/blocks/BlockRenderer.vue'
 
 const debugStore = useDebugStore()
 console.log(debugStore)
@@ -51,9 +52,12 @@ const applyDrag = <T extends any[]>(arr: T, dragResult: DropResult) => {
         "
         :get-child-payload="(index: number) => index"
       >
-        <SmoothDndDraggable v-for="block in blocks" :key="block">
-          <div class="block-item">{{ block }}</div>
+        <SmoothDndDraggable v-for="block in blocks" :key="block.id">
+          <BlockRenderer :block="block"></BlockRenderer>
         </SmoothDndDraggable>
+        <!-- <SmoothDndDraggable v-for="block in blocks" :key="block">
+          <div class="block-item">{{ block }}</div>
+        </SmoothDndDraggable> -->
       </SmoothDndContainer>
     </div>
     <div>右</div>

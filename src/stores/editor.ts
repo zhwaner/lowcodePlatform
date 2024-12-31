@@ -1,16 +1,18 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import type { Block } from '@/types/block'
+import { blocks as mockBlocks } from '@/mock/blocks'
 
 export const useEditorStore = defineStore('editor', () => {
-  const blocks = ref(['block1', 'block2', 'block3'])
+  const blocks = ref<Block[]>(mockBlocks)
 
-  const addBlock = (block: any) => {
+  const addBlock = (block: Block) => {
     blocks.value.push(block)
   }
 
-  const updateBlock = (block: any) => {
+  const updateBlock = (newBlocks: Block[]) => {
     // 一般尽量不要直接覆盖，这样会影响性能
-    blocks.value = block
+    blocks.value = newBlocks
   }
 
   console.log(blocks)
