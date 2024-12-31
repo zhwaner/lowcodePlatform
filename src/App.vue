@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
+
 // import { computed } from 'vue'
 import AppNavigator from './components/AppNavigator.vue'
 

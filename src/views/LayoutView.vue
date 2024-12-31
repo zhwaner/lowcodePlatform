@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import AppLeftPanel from '@/components/LeftPanel.vue'
-import { useDebugStore } from '@/stores/debug'
-import { useEditorStore } from '@/stores/editor'
-import { SmoothDndContainer } from '@/components/SmoothDnd/SmoothDndContainer'
-import { SmoothDndDraggable } from '@/components/SmoothDnd/SmoothDndDraggable'
 import { storeToRefs } from 'pinia'
 import type { DropResult } from 'smooth-dnd'
-import { arrayMove } from '@/utils/array'
+
 import BlockRenderer from '@/blocks/BlockRenderer.vue'
+import AppLeftPanel from '@/components/LeftPanel.vue'
+import RightPanel from '@/components/RightPanel.vue'
+import { SmoothDndContainer } from '@/components/SmoothDnd/SmoothDndContainer'
+import { SmoothDndDraggable } from '@/components/SmoothDnd/SmoothDndDraggable'
+import { useDebugStore } from '@/stores/debug'
+import { useEditorStore } from '@/stores/editor'
+import { arrayMove } from '@/utils/array'
 
 const debugStore = useDebugStore()
 console.log(debugStore)
@@ -37,7 +39,7 @@ const applyDrag = <T extends any[]>(arr: T, dragResult: DropResult) => {
 <template>
   <div class="layout-wrapper" :class="{ debug: debug }">
     <AppLeftPanel></AppLeftPanel>
-    <div>
+    <div class="layout-painter">
       <SmoothDndContainer
         class="block-group"
         orientation="vertical"
@@ -60,7 +62,9 @@ const applyDrag = <T extends any[]>(arr: T, dragResult: DropResult) => {
         </SmoothDndDraggable> -->
       </SmoothDndContainer>
     </div>
-    <div>右</div>
+    <div>
+      <RightPanel></RightPanel>
+    </div>
   </div>
 </template>
 
@@ -68,5 +72,12 @@ const applyDrag = <T extends any[]>(arr: T, dragResult: DropResult) => {
 .layout-wrapper {
   display: flex;
   height: calc(100% - 48px);
+}
+
+.layout-painter {
+  width: 100%;
+  background-color: #f5f5f5;
+  margin: 20px;
+  overflow-y: auto;
 }
 </style>

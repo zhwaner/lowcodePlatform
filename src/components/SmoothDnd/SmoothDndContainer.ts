@@ -1,6 +1,7 @@
+import { dropHandlers, type SmoothDnD, smoothDnD } from 'smooth-dnd'
 import { defineComponent, h } from 'vue'
-import { dropHandlers, smoothDnD, type SmoothDnD } from 'smooth-dnd'
-import { validateTagProp, getTagProps } from './utils'
+
+import { getTagProps, validateTagProp } from './utils'
 
 // 框架的坑，要去看smoothDnD的issue有写
 smoothDnD.dropHandler = dropHandlers.reactDropHandler().handler

@@ -1,5 +1,5 @@
-import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 export const useDebugStore = defineStore('debug', () => {
   const debug = ref(false)

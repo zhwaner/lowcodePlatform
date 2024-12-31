@@ -4,10 +4,11 @@
 
 <script setup lang="ts">
 import type { Block } from '@/types/block'
+
 import ChartBlock from './internal/ChartBlock.vue'
+import FallbackBlock from './internal/FallbackBlock.vue'
 import ImageBlock from './internal/ImageBlock.vue'
 import TextBlock from './internal/TextBlock.vue'
-import FallbackBlock from './internal/FallbackBlock.vue'
 
 // type BlockType = 'chart' | 'image' | 'text'
 
