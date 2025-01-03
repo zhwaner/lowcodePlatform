@@ -15,12 +15,16 @@ export interface TextBlock extends BaseBlock {
 
 export interface ChartBlock extends BaseBlock {
   type: 'chart'
+  props: {
+    content: string
+  }
 }
 
 export interface ImageBlock extends BaseBlock {
   type: 'image'
   props: {
     src: string
+    alt?: string
   }
 }
 

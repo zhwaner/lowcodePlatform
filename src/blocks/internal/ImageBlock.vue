@@ -1,10 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { ImageBlock } from '@/types/block'
+
+const props = defineProps<{
+  block: ImageBlock
+}>()
+</script>
 
 <template>
   <div class="image">
-    <img
-      src="https://images.pexels.com/photos/2577274/pexels-photo-2577274.jpeg?auto=compress&cs=tinysrgb&w=1600"
-    />
+    <img :src="props.block.props.src" :alt="props.block.props.alt" />
   </div>
 </template>
 

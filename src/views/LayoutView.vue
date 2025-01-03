@@ -4,7 +4,7 @@ import type { DropResult } from 'smooth-dnd'
 
 import BlockRenderer from '@/blocks/BlockRenderer.vue'
 import AppLeftPanel from '@/components/LeftPanel.vue'
-import RightPanel from '@/components/RightPanel.vue'
+import RightPanel from '@/components/RightPanel/RightPanel.vue'
 import { SmoothDndContainer } from '@/components/SmoothDnd/SmoothDndContainer'
 import { SmoothDndDraggable } from '@/components/SmoothDnd/SmoothDndDraggable'
 import { useDebugStore } from '@/stores/debug'
@@ -16,7 +16,7 @@ console.log(debugStore)
 const editorStore = useEditorStore()
 
 const { debug } = storeToRefs(debugStore)
-const { blocks } = storeToRefs(editorStore)
+const { blocks, activeBlockId } = storeToRefs(editorStore)
 console.log(editorStore, blocks, debug)
 
 const applyDrag = <T extends any[]>(arr: T, dragResult: DropResult) => {
@@ -37,7 +37,7 @@ const applyDrag = <T extends any[]>(arr: T, dragResult: DropResult) => {
 </script>
 
 <template>
-  <div class="layout-wrapper" :class="{ debug: debug }">
+  <div class="layout-wrapper">
     <AppLeftPanel></AppLeftPanel>
     <div class="layout-painter">
       <SmoothDndContainer
@@ -49,13 +49,20 @@ const applyDrag = <T extends any[]>(arr: T, dragResult: DropResult) => {
           (payload) => {
             console.log('drop', payload)
             const newBlocks = applyDrag(blocks, payload)
-            editorStore.updateBlock(newBlocks)
+            editorStore.updateBlocks(newBlocks)
           }
         "
         :get-child-payload="(index: number) => index"
       >
         <SmoothDndDraggable v-for="block in blocks" :key="block.id">
-          <BlockRenderer :block="block"></BlockRenderer>
+          <div
+            :class="{ 'block-wrapper': true, debug: debug || block.id === activeBlockId }"
+            :data-block-type="block.type"
+            :data-block-id="block.id"
+            @click="() => editorStore.selectBlock(block)"
+          >
+            <BlockRenderer :block="block"></BlockRenderer>
+          </div>
         </SmoothDndDraggable>
         <!-- <SmoothDndDraggable v-for="block in blocks" :key="block">
           <div class="block-item">{{ block }}</div>
@@ -76,8 +83,18 @@ const applyDrag = <T extends any[]>(arr: T, dragResult: DropResult) => {
 
 .layout-painter {
   width: 100%;
-  background-color: #f5f5f5;
   margin: 20px;
   overflow-y: auto;
+}
+
+.block-wrapper {
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 4px;
+  border: 2px solid transparent;
+}
+
+.block-wrapper.debug {
+  border: 2px dotted turquoise;
 }
 </style>

@@ -1,5 +1,11 @@
 <template>
-  <div>这是一段文字</div>
+  <div>{{ props.block.props.content }}</div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { TextBlock } from '@/types/block'
+
+const props = defineProps<{
+  block: TextBlock
+}>()
+</script>
