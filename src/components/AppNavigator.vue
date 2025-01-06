@@ -2,8 +2,8 @@
 import { Bug, Data, LayoutThree, Lightning, Share } from '@icon-park/vue-next'
 import { computed, defineComponent, h } from 'vue'
 import { useRoute } from 'vue-router'
-
-import { useDebugStore } from '@/stores/debug'
+import '@/stores/calculator'
+import { useDebugStore, useTime } from '@/stores/debug'
 // import { storeToRefs } from 'pinia'
 
 const linkItems = [
@@ -29,6 +29,8 @@ const linkItems = [
     borderColor: 'radial-gradient(50% 50%, rgb(241, 60, 11) 0%, rgba(241, 60, 11, 0) 100%)',
   },
 ]
+
+const { time } = useTime({ silent: false })
 
 defineProps<{
   msg: string
@@ -87,7 +89,7 @@ const Icon = defineComponent({
           src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/11.3.0/2/svg/1f469-200d-1f692.svg"
         />
       </div>
-      <h1 class="app-name">Byelide</h1>
+      <h1 class="app-name">Byelide{{ time }}</h1>
     </div>
     <div class="app-navigator-link-wrapper">
       <router-link
